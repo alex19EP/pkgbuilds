@@ -1,0 +1,33 @@
+# Maintainer: Alexander Epaneshnikov <aarnaarn2@gmail.com>
+
+pkgname=espeakup-git
+pkgver=0.81.r0.gefaad90
+pkgrel=1
+pkgdesc="Allows the Speakup screen review system to use the espeak-ng synthesizer (development version)"
+arch=('x86_64')
+url="https://github.com/alex19ep/espeakup"
+license=('GPL3')
+depends=('alsa-lib' 'espeak-ng')
+makedepends=('git' 'meson')
+provides=("${pkgname%-git}")
+conflicts=("${pkgname%-git}")
+backup=(etc/default/espeakup)
+source=(${pkgname%-git}::'git+https://github.com/alex19ep/espeakup.git')
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/${pkgname%-git}"
+	# cutting off 'v' prefix that presents in the git tag
+	printf "%s" "$(git describe --long | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g')"
+}
+
+build() {
+	cd "$srcdir/${pkgname%-git}"
+	arch-meson . build
+	ninja -C build
+}
+
+package() {
+	cd "$srcdir/${pkgname%-git}"
+	DESTDIR="$pkgdir" ninja install -C build
+}
