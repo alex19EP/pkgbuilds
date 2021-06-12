@@ -3,13 +3,13 @@
 
 pkgname=('espeak-ng-git' 'espeak-ng-espeak-git')
 pkgbase=espeak-ng-git
-pkgver=1.50.r312.gdbaf6d40
+pkgver=1.50.r385.g4f9664af
 pkgrel=1
 pkgdesc="Multi-lingual software speech synthesizer (development version)"
 arch=('x86_64')
 url="https://github.com/espeak-ng/espeak-ng"
 license=('GPL3')
-makedepends=('pcaudiolib' 'git' 'ruby-ronn')
+makedepends=('pcaudiolib' 'git' 'ruby-ronn-ng')
 source=(${pkgname%-git}::'git+https://github.com/espeak-ng/espeak-ng.git')
 md5sums=('SKIP')
 
@@ -25,7 +25,7 @@ prepare() {
 
 build() {
   cd ${pkgname%-git}
-  ./configure --prefix=/usr --with-extdict-{ru,zh,zhy}
+  ./configure --prefix=/usr --with-extdict-{ru,cmn,yue}
   make src/espeak-ng src/speak-ng
   make -j1
 }
