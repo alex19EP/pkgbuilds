@@ -1,6 +1,6 @@
 pkgbase = speech-dispatcher-git
 	pkgdesc = High-level device independent layer for speech synthesis interface (development version)
-	pkgver = 0.10.1.r188.g98f4df4e
+	pkgver = 0.10.1.r236.gf1a8725f
 	pkgrel = 1
 	url = http://www.freebsoft.org/speechd
 	arch = x86_64
@@ -9,7 +9,7 @@ pkgbase = speech-dispatcher-git
 	makedepends = intltool
 	makedepends = espeak-ng
 	makedepends = libltdl
-	makedepends = python-xdg
+	makedepends = python-pyxdg
 	makedepends = dotconf
 	makedepends = libpulse
 	makedepends = libao
@@ -19,9 +19,9 @@ pkgbase = speech-dispatcher-git
 	sha512sums = SKIP
 
 pkgname = speech-dispatcher-git
-	depends = libspeechd-git=0.10.1.r188.g98f4df4e-1
+	depends = libspeechd-git=0.10.1.r236.gf1a8725f-1
 	depends = libltdl
-	depends = python-xdg
+	depends = python-pyxdg
 	depends = dotconf
 	depends = libpulse
 	depends = libao
@@ -49,4 +49,3 @@ pkgname = speech-dispatcher-git
 pkgname = libspeechd-git
 	provides = libspeechd
 	conflicts = libspeechd
-
