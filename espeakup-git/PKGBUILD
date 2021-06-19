@@ -1,18 +1,17 @@
 # Maintainer: Alexander Epaneshnikov <aarnaarn2@gmail.com>
 
 pkgname=espeakup-git
-pkgver=0.81.r0.gefaad90
+pkgver=0.90.r1.g3794e8e
 pkgrel=1
 pkgdesc="Allows the Speakup screen review system to use the espeak-ng synthesizer (development version)"
 arch=('x86_64')
-url="https://github.com/alex19ep/espeakup"
+url="https://github.com/linux-speakup/espeakup"
 license=('GPL3')
 depends=('alsa-lib' 'espeak-ng')
-makedepends=('git' 'meson')
+makedepends=('git' 'pandoc' 'meson')
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
-backup=(etc/default/espeakup)
-source=(${pkgname%-git}::'git+https://github.com/alex19ep/espeakup.git')
+source=(${pkgname%-git}::'git+https://github.com/linux-speakup/espeakup.git')
 md5sums=('SKIP')
 
 pkgver() {
