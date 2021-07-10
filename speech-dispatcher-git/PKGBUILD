@@ -9,13 +9,13 @@
 
 pkgbase=speech-dispatcher-git
 pkgname=(speech-dispatcher-git libspeechd-git)
-pkgver=0.10.1.r236.gf1a8725f
+pkgver=0.11.0.rc2.r3.gd8accf2b
 pkgrel=1
-arch=('x86_64')
 pkgdesc="High-level device independent layer for speech synthesis interface (development version)"
+arch=('x86_64')
 url="http://www.freebsoft.org/speechd"
 license=('GPL2' 'FDL')
-makedepends=('intltool' 'espeak-ng' 'libltdl' 'python-pyxdg' 'dotconf' 'libpulse' 'libao' 'git')
+makedepends=('glib2' 'intltool' 'espeak-ng' 'libtool' 'python-pyxdg' 'dotconf' 'libpulse' 'libao' 'git')
 options=('!emptydirs')
 source=(${pkgname%-git}::'git+https://github.com/brailcom/speechd.git')
 sha512sums=('SKIP')
@@ -44,14 +44,13 @@ build() {
 }
 
 package_speech-dispatcher-git() {
-	depends=("libspeechd-git=$pkgver-$pkgrel" 'libltdl' 'python-pyxdg' 'dotconf' 'libpulse' 'libao')
+	depends=("libspeechd-git=$pkgver-$pkgrel" 'glib2' 'libtool' 'python-pyxdg' 'dotconf' 'libpulse' 'libao')
 	optdepends=('festival: Speech output using Festival'
 		'espeak-ng: Speech output using ESpeak-ng'
 		'pulseaudio: PulseAudio support')
 	conflicts=("speech-dispatcher")
 	provides=("speech-dispatcher")
 	backup=(etc/speech-dispatcher/clients/emacs.conf
-		etc/speech-dispatcher/modules/ibmtts.conf
 		etc/speech-dispatcher/modules/espeak.conf
 		etc/speech-dispatcher/modules/espeak-ng.conf
 		etc/speech-dispatcher/modules/swift-generic.conf
@@ -61,7 +60,6 @@ package_speech-dispatcher-git() {
 		etc/speech-dispatcher/modules/espeak-ng-mbrola-generic.conf
 		etc/speech-dispatcher/modules/dtk-generic.conf
 		etc/speech-dispatcher/modules/llia_phon-generic.conf
-		etc/speech-dispatcher/modules/ivona.conf
 		etc/speech-dispatcher/modules/epos-generic.conf
 		etc/speech-dispatcher/modules/flite.conf
 		etc/speech-dispatcher/speechd.conf)
@@ -73,16 +71,17 @@ package_speech-dispatcher-git() {
 
 	sed -i 's|includedir=.*|includedir=${prefix}/include/speech-dispatcher|g' "${pkgdir}/usr/lib/pkgconfig/speech-dispatcher.pc"
 
-	mkdir -p ${srcdir}/libspeechd/usr/lib
-	mv "${pkgdir}"/usr/include ${srcdir}/libspeechd/usr
-	mv "${pkgdir}"/usr/lib/libspeechd*so* ${srcdir}/libspeechd/usr/lib
+	mkdir -p "${srcdir}"/libspeechd/usr/lib
+	mv "${pkgdir}"/usr/include "${srcdir}"/libspeechd/usr
+	mv "${pkgdir}"/usr/lib/libspeechd*so* "${srcdir}"/libspeechd/usr/lib
 }
 
 package_libspeechd-git() {
+	depends=('glib2' 'libtool')
 	conflicts=("libspeechd")
 	provides=("libspeechd")
 	mkdir -p "${pkgdir}"/usr/lib
 
-	mv ${srcdir}/libspeechd/usr/include "${pkgdir}"/usr
-	mv ${srcdir}/libspeechd/usr/lib/* "${pkgdir}"/usr/lib
+	mv "${srcdir}"/libspeechd/usr/include "${pkgdir}"/usr
+	mv "${srcdir}"/libspeechd/usr/lib/* "${pkgdir}"/usr/lib
 }
