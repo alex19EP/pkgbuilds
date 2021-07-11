@@ -3,7 +3,7 @@
 
 pkgname=('espeak-ng-git' 'espeak-ng-espeak-git')
 pkgbase=espeak-ng-git
-pkgver=1.50.r385.g4f9664af
+pkgver=1.50.r410.g49930f48
 pkgrel=1
 pkgdesc="Multi-lingual software speech synthesizer (development version)"
 arch=('x86_64')
@@ -32,9 +32,9 @@ build() {
 
 package_espeak-ng-git() {
   depends=('pcaudiolib')
+  optdepends=('espeak-ng-espeak-git: for *speak symlinks')
   provides=('espeak-ng')
   conflicts=('espeak-ng')
-  optdepends=('espeak-ng-espeak-git: for *speak symlinks')
   cd ${pkgname%-git}
   make DESTDIR="$pkgdir" install
   mv "$pkgdir"/usr/share/vim/{addons,vimfiles}
@@ -44,9 +44,8 @@ package_espeak-ng-git() {
 package_espeak-ng-espeak-git() {
   pkgdesc+=' (*speak symlinks)'
   depends=('espeak-ng-git')
-  provides=('espeak-ng-espeak')
-  conflicts=('espeak-ng-espeak')
-  conflicts=('espeak')
+  provides=('espeak-ng-espeak' 'espeak')
+  conflicts=('espeak-ng-espeak' 'espeak')
   install -d "$pkgdir"/usr/{bin,include/espeak,share/man/man1}
   ln -s /usr/bin/espeak-ng "$pkgdir"/usr/bin/espeak
   ln -s /usr/bin/speak-ng "$pkgdir"/usr/bin/speak

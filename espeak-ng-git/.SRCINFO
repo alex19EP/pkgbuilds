@@ -1,6 +1,6 @@
 pkgbase = espeak-ng-git
 	pkgdesc = Multi-lingual software speech synthesizer (development version)
-	pkgver = 1.50.r385.g4f9664af
+	pkgver = 1.50.r410.g49930f48
 	pkgrel = 1
 	url = https://github.com/espeak-ng/espeak-ng
 	arch = x86_64
@@ -21,4 +21,6 @@ pkgname = espeak-ng-espeak-git
 	pkgdesc = Multi-lingual software speech synthesizer (development version) (*speak symlinks)
 	depends = espeak-ng-git
 	provides = espeak-ng-espeak
+	provides = espeak
+	conflicts = espeak-ng-espeak
 	conflicts = espeak
