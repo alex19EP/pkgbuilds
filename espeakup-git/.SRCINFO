@@ -1,12 +1,12 @@
 pkgbase = espeakup-git
 	pkgdesc = Allows the Speakup screen review system to use the espeak-ng synthesizer (development version)
-	pkgver = 0.90.r1.g3794e8e
+	pkgver = 0.90.r5.ge858481
 	pkgrel = 1
 	url = https://github.com/linux-speakup/espeakup
 	arch = x86_64
 	license = GPL3
 	makedepends = git
-	makedepends = pandoc
+	makedepends = ruby-ronn-ng
 	makedepends = meson
 	depends = alsa-lib
 	depends = espeak-ng
