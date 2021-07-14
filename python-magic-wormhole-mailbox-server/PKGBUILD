@@ -1,5 +1,5 @@
 # Maintainer: Dian M Fay <dian.m.fay@gmail.com>
-# contributor: Alexander Epaneshnikov <aarnaarn2@gmail.com>
+# Contributor: Alexander Epaneshnikov <aarnaarn2@gmail.com>
 
 pkgname=python-magic-wormhole-mailbox-server
 pkgver=0.4.1
@@ -27,7 +27,7 @@ check() {
 
 package() {
 	cd "${pkgname#python-}-$pkgver"
-	python setup.py install --root="${pkgdir}/" --optimize=1
+	python setup.py install --root="${pkgdir}/" --optimize=1 --skip-build
 	install -vDm 644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 	install -vDm 644 docs/*.md -t "${pkgdir}/usr/share/docs/${pkgname}"
 }
