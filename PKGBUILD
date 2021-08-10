@@ -1,7 +1,7 @@
 # Maintainer: Alexander Epaneshnikov <aarnaarn2@gmail.com>
 
 pkgname=arch-man-bot-git
-pkgver=r8.6b20f92
+pkgver=r10.e0d2e00
 pkgrel=1
 pkgdesc="Telegram bot for in-line search of man-pages"
 arch=('any')
@@ -16,7 +16,7 @@ source=("${pkgname%-git}::git+https://github.com/alcortazzo/arch-man-bot.git"
         "systemd-credential-pass.patch"
         "${pkgname%-git}.service")
 sha512sums=('SKIP'
-            'f251be80736216f8c23b4e0c27b6c5aa2d129ec9957ef160dc5c83bd7b40f56733a52936f343734cdd699dbf4a1703ed520912332d48a2ac93ac9614f09ecb7f'
+            '83ff997c5417672d33729d42e4a7db542c02f86632e657253ff6c54bb0190fa420f69a57b8992770853be7c822be842ebe32c8cacb2993ebc46160eed85a1c92'
             '33c98561c766ca7cbe524b148e04e17061b3966ed99e991e5178958149adc817d2d83a62d87b673343fd972da81d5e5aaf900b747eaef4c1e808d782584294a9')
 
 pkgver() {
