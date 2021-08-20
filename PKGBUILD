@@ -1,5 +1,5 @@
 # Maintainer: Storm Dragon <stormdragon2976@gmail.com>
-# Maintainer: Alexander Epaneshnikov <aarnaarn2@gmail.com>
+# Maintainer: Alexander Epaneshnikov <alex19ep@archlinux.org>
 
 pkgname=magic-wormhole-git
 pkgver=0.12.0.r21.e522a39
