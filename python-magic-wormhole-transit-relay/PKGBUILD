@@ -1,4 +1,4 @@
-# Maintainer: Alexander Epaneshnikov <aarnaarn2@gmail.com>
+# Maintainer: Alexander Epaneshnikov <alex19ep@archlinux.org>
 
 pkgname=python-magic-wormhole-transit-relay
 pkgver=0.2.1

@@ -1,4 +1,4 @@
-# Maintainer: Alexander Epaneshnikov <aarnaarn2@gmail.com>
+# Maintainer: Alexander Epaneshnikov <alex19ep@archlinux.org>
 
 pkgname=rulex
 pkgver=3.5.0

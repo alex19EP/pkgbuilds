@@ -1,4 +1,4 @@
-# Maintainer: Alexander Epaneshnikov <aarnaarn2@gmail.com>
+# Maintainer: Alexander Epaneshnikov <alex19ep@archlinux.org>
 # Contributor: Jeremiah Ticket <seashellpromises@gmail.com>
 # Contributor: Storm Dragon <stormdragon2976@gmail.com>
 
