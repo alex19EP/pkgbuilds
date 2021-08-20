@@ -1,5 +1,5 @@
 # Maintainer: Yardena Cohen <yardenack at gmail dot com>
-# Maintainer: Alexander Epaneshnikov <aarnaarn2@gmail.com>
+# Maintainer: Alexander Epaneshnikov <alex19ep@archlinux.org>
 
 pkgname=s3cmd-git
 pkgver=2.1.0.r88.g27d8fb0
