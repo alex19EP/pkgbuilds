@@ -1,0 +1,13 @@
+pkgbase = virtio-win
+	pkgdesc = virtio drivers for Windows (2000, XP, Vista, 7, 8, 10) guests signed version
+	pkgver = 1.9.17
+	pkgrel = 1
+	url = https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html
+	arch = any
+	license = BSD-3-Clause
+	optdepends = qemu
+	noextract = virtio-win-1.9.17.iso
+	source = virtio-win-1.9.17.iso
+	sha256sums = 02371035f75b82cf5fc1ec056fcda7efd98ba972e1b68ed2ec8e14ebbef0f931
+
+pkgname = virtio-win
