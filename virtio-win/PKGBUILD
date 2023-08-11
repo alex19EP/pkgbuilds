@@ -1,7 +1,7 @@
 # Maintainer: Alexander Epaneshnikov <alex19ep@archlinux.org>
 
 pkgname=virtio-win
-pkgver=1.9.17
+pkgver=1.9.34
 pkgrel=1
 pkgdesc='virtio drivers for Windows (2000, XP, Vista, 7, 8, 10) guests signed version'
 arch=('any')
@@ -11,7 +11,7 @@ optdepends=('qemu')
 # https://access.redhat.com/downloads/content/rhel---8/x86_64/7441/virtio-win/1.9.17-4.el8_4/noarch/fd431d51/package
 source=("$pkgname-$pkgver.iso")
 noextract=("$pkgname-$pkgver.iso")
-sha256sums=('02371035f75b82cf5fc1ec056fcda7efd98ba972e1b68ed2ec8e14ebbef0f931')
+sha256sums=('57bbbcc174f43681da4c165f33a2dfa4cee454d85eadc109c8e14944e64f7d30')
 
 package() {
 	install -vDm644 $pkgname-$pkgver.iso "${pkgdir}/var/lib/libvirt/images/${pkgname}.iso"
