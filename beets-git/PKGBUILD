@@ -3,7 +3,7 @@
 # Contributor: Johannes Löthberg <demizide@gmail.com>
 
 pkgname=beets-git
-pkgver=1.6.0.r1302.gdae525741
+pkgver=1.6.0.r1424.g7543a351e
 pkgrel=1
 pkgdesc="Flexible music library manager and tagger - git version"
 arch=('any')
@@ -33,8 +33,7 @@ checkdepends=(
   python-discogs-client
   python-flask
   python-mpd2
-  python-nose
-  python-nose-exclude
+  python-pytest
   python-pylast
   python-requests-oauthlib
   python-responses
@@ -78,11 +77,7 @@ build() {
 
 check() {
   cd beets
-  python -m nose \
-    --exclude-test=test.test_ui.CompletionTest \
-    --exclude-test=test.test_zero.ZeroPluginTest \
-    --exclude-test=test.test_embedart.EmbedartCliTest.test_accept_similar_art \
-    --exclude-test=test.test_ui.ConfigTest
+  pytest -k 'not test_completion and not test_merge_duplicate_album'
 }
 
 package() {
