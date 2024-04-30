@@ -1,6 +1,6 @@
 pkgbase = linode-cli-git
 	pkgdesc = The Linode Command Line Interface (development version)
-	pkgver = 5.41.2.r17.g2fbcfa6
+	pkgver = 5.48.2.r24.gfeecb3a
 	pkgrel = 1
 	url = https://github.com/linode/linode-cli
 	arch = any
@@ -18,7 +18,7 @@ pkgbase = linode-cli-git
 	provides = linode-cli
 	conflicts = linode-cli
 	source = linode-cli::git+https://github.com/linode/linode-cli.git
-	source = linode-cli-5.41.2.r17.g2fbcfa6-openapi.yaml::https://www.linode.com/docs/api/openapi.yaml
+	source = linode-cli-5.48.2.r24.gfeecb3a-openapi.yaml::https://www.linode.com/docs/api/openapi.yaml
 	sha256sums = SKIP
 	sha256sums = SKIP
 

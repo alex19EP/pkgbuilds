@@ -1,7 +1,7 @@
 # Maintainer: Alexander Epaneshnikov <alex19ep@archlinux.org>
 
 pkgname=linode-cli-git
-pkgver=5.41.2.r17.g2fbcfa6
+pkgver=5.48.2.r24.gfeecb3a
 pkgrel=1
 pkgdesc="The Linode Command Line Interface (development version)"
 arch=('any')
@@ -26,6 +26,7 @@ build() {
 	cd "${pkgname%-git}"
 	python -m linodecli bake ../${pkgname%-git}-$pkgver-openapi.yaml --skip-config
 	cp data-3 linodecli/
+	python -m linodecli completion bash --skip-config > linode-cli.sh
 	python -m build --wheel --skip-dependency-check --no-isolation
 }
 
@@ -35,5 +36,4 @@ package() {
 	python -m installer --destdir="${pkgdir}" dist/*.whl
 	install -vDm0644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 	install -vDm0644 linode-cli.sh "${pkgdir}/usr/share/bash-completion/completions/linode-cli"
-	rm -rv "${pkgdir}/$site_packages/etc/"
 }
