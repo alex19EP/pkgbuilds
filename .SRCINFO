@@ -1,7 +1,7 @@
 pkgbase = pinesam
 	pkgdesc = Configure and watch Pine64's 'pinecil' soldering iron via Bloetooth.
 	pkgver = 2.2.6
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/builder555/PineSAM
 	install = pinesam.install
 	arch = i686
@@ -20,6 +20,7 @@ pkgbase = pinesam
 	depends = python-bleak
 	depends = python-requests
 	depends = python-websockets
+	depends = python-pinecil
 	optdepends = python-pip: For /usr/lib/pinesam/backend/check_install.py
 	optdepends = python-pytest: For /usr/lib/pinesam/backend/{test_server,test_pinecil}.py
 	source = pinesam.zip::https://github.com/builder555/PineSAM/releases/download/v2.2.6/PineSAM-Source-all-v2.2.6.zip

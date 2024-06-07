@@ -5,7 +5,7 @@ _githost='github.com'
 _gituser='builder555'
 pkgname=pinesam
 pkgver=2.2.6
-pkgrel=1
+pkgrel=2
 arch=(
   i686
   x86_64
@@ -24,6 +24,7 @@ depends=(
   'python-bleak'
   'python-requests'
   'python-websockets'
+  'python-pinecil'
   # 'python-pipenv'
 )
 makedepends=(
