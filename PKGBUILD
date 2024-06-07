@@ -5,7 +5,7 @@ _githost='github.com'
 _gituser='builder555'
 pkgname=pinesam
 pkgver=2.2.6
-pkgrel=2
+pkgrel=3
 arch=(
   i686
   x86_64
@@ -39,7 +39,7 @@ optdepends=(
 
 install="${pkgname}.install"
 source=(
-  "${pkgname}.zip::https://github.com/builder555/PineSAM/releases/download/v${pkgver}/PineSAM-Source-all-v${pkgver}.zip"
+  "${pkgname}-${pkgver}.zip"::"https://github.com/builder555/PineSAM/releases/download/v${pkgver}/PineSAM-Source-all-v${pkgver}.zip"
   'pinesam.sh'
   "${install}"
 )
