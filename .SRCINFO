@@ -1,8 +1,8 @@
 pkgbase = beets-git
 	pkgdesc = Flexible music library manager and tagger - git version
-	pkgver = 1.6.0.r1436.g329098a0b
-	pkgrel = 1
-	url = http://beets.io/
+	pkgver = 2.0.0.r32.g0966e3c65
+	pkgrel = 2
+	url = https://beets.io/
 	arch = any
 	license = MIT
 	checkdepends = bash-completion
@@ -13,12 +13,12 @@ pkgbase = beets-git
 	checkdepends = python-mpd2
 	checkdepends = python-pytest
 	checkdepends = python-pytest-cov
+	checkdepends = python-pytest-flask
 	checkdepends = python-pylast
 	checkdepends = python-requests-oauthlib
 	checkdepends = python-responses
 	checkdepends = python-xdg
 	makedepends = git
-	makedepends = python-setuptools
 	makedepends = python-sphinx
 	depends = python-confuse
 	depends = python-jellyfish
@@ -49,7 +49,7 @@ pkgbase = beets-git
 	optdepends = python-requests: Chromaprint/Acoustid, BPD, FetchArt plugins
 	optdepends = python-requests-oauthlib: Beatport plugin
 	optdepends = python-xdg: Thumbnails plugin
-	provides = beets=1.6.0.r1436.g329098a0b
+	provides = beets=2.0.0.r32.g0966e3c65
 	conflicts = beets
 	source = git+https://github.com/beetbox/beets.git
 	md5sums = SKIP

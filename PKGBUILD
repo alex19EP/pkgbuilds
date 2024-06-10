@@ -1,13 +1,14 @@
 # Maintainer: Alexander Epaneshnikov <alex19ep@archlinux.org>
+# Maintainer: schan <mail@schan.cc>
 # Contributor: Adrian Sampson <adrian@radbox.org>
 # Contributor: Johannes Löthberg <demizide@gmail.com>
 
 pkgname=beets-git
 pkgver=2.0.0.r32.g0966e3c65
-pkgrel=1
+pkgrel=2
 pkgdesc="Flexible music library manager and tagger - git version"
 arch=('any')
-url="http://beets.io/"
+url="https://beets.io/"
 license=('MIT')
 depends=(
   python-confuse
@@ -23,7 +24,6 @@ depends=(
 )
 makedepends=(
   git
-  python-setuptools
   python-sphinx
 )
 checkdepends=(
@@ -74,17 +74,17 @@ pkgver() {
 
 build() {
   cd ${srcdir}/beets
-  python setup.py build sdist
+  python -m build --no-isolation
 }
 
 check() {
-  cd beets
-  pytest -k 'not test_completion and not test_merge_duplicate_album'
+  cd ${srcdir}/beets
+  python -m pytest 
 }
 
 package() {
   cd ${srcdir}/beets
-  python setup.py install --root=${pkgdir} --optimize=1 --skip-build
+  python -m installer --destdir="$pkgdir" dist/*.whl
   install -Dm 644 extra/_beet -t "${pkgdir}"/usr/share/zsh/site-functions/
   install -Dm 644 man/beet.1 -t "${pkgdir}"/usr/share/man/man1/
   install -Dm 644 man/beetsconfig.5 -t "${pkgdir}"/usr/share/man/man5/
