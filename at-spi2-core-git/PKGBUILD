@@ -8,7 +8,7 @@ pkgname=(
   at-spi2-core-git
   at-spi2-core-docs-git
 )
-pkgver=2.51.90.r33.g066312934
+pkgver=2.52.0.r13.g13be6f0ed
 pkgrel=1
 pkgdesc="Protocol definitions and daemon for D-Bus at-spi"
 url="https://gitlab.gnome.org/GNOME/at-spi2-core"
@@ -29,6 +29,7 @@ makedepends=(
   gi-docgen
   git
   gobject-introspection
+  glib2-devel
   meson
   python-sphinx
 )

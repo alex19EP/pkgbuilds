@@ -1,6 +1,6 @@
 pkgbase = at-spi2-core-git
 	pkgdesc = Protocol definitions and daemon for D-Bus at-spi
-	pkgver = 2.51.90.r33.g066312934
+	pkgver = 2.52.0.r13.g13be6f0ed
 	pkgrel = 1
 	url = https://gitlab.gnome.org/GNOME/at-spi2-core
 	arch = x86_64
@@ -10,6 +10,7 @@ pkgbase = at-spi2-core-git
 	makedepends = gi-docgen
 	makedepends = git
 	makedepends = gobject-introspection
+	makedepends = glib2-devel
 	makedepends = meson
 	makedepends = python-sphinx
 	depends = dbus
@@ -26,8 +27,8 @@ pkgbase = at-spi2-core-git
 pkgname = at-spi2-core-git
 	optdepends = dbus-broker: Alternative bus implementation
 	provides = at-spi2-core
-	provides = at-spi2-atk=2.51.90.r33.g066312934-1
-	provides = atk=2.51.90.r33.g066312934-1
+	provides = at-spi2-atk=2.52.0.r13.g13be6f0ed-1
+	provides = atk=2.52.0.r13.g13be6f0ed-1
 	provides = libatk-1.0.so
 	provides = libatk-bridge-2.0.so
 	provides = libatspi.so
