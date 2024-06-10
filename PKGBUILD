@@ -3,7 +3,7 @@
 # Contributor: Johannes Löthberg <demizide@gmail.com>
 
 pkgname=beets-git
-pkgver=1.6.0.r1436.g329098a0b
+pkgver=2.0.0.r32.g0966e3c65
 pkgrel=1
 pkgdesc="Flexible music library manager and tagger - git version"
 arch=('any')
@@ -35,6 +35,7 @@ checkdepends=(
   python-mpd2
   python-pytest
   python-pytest-cov
+  python-pytest-flask
   python-pylast
   python-requests-oauthlib
   python-responses
