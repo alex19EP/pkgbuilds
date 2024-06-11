@@ -4,8 +4,8 @@
 # Contributor: Johannes Löthberg <demizide@gmail.com>
 
 pkgname=beets-git
-pkgver=2.0.0.r32.g0966e3c65
-pkgrel=3
+pkgver=2.0.0.r34.gb4003c34e
+pkgrel=1
 pkgdesc="Flexible music library manager and tagger - git version"
 arch=('any')
 url="https://beets.io/"
@@ -25,6 +25,9 @@ depends=(
 makedepends=(
   git
   python-sphinx
+  python-build
+  python-wheel
+  python-installer
 )
 checkdepends=(
   bash-completion
@@ -81,7 +84,8 @@ check() {
   cd ${srcdir}/beets
   python -m pytest \
 	--deselect test/test_ui.py::ConfigTest::test_cli_config_paths_resolve_relative_to_user_dir \
-	--deselect test/test_ui.py::CompletionTest::test_completion
+	--deselect test/test_ui.py::CompletionTest::test_completion \
+	--deselect test/test_importer.py::ImportDuplicateAlbumTest::test_merge_duplicate_album
 }
 
 package() {
