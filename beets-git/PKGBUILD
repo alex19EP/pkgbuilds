@@ -4,7 +4,7 @@
 # Contributor: Johannes Löthberg <demizide@gmail.com>
 
 pkgname=beets-git
-pkgver=2.0.0.r34.gb4003c34e
+pkgver=2.0.0.r73.gb583fb7de
 pkgrel=1
 pkgdesc="Flexible music library manager and tagger - git version"
 arch=('any')
@@ -28,6 +28,7 @@ makedepends=(
   python-build
   python-wheel
   python-installer
+  python-poetry-core
 )
 checkdepends=(
   bash-completion
@@ -76,23 +77,28 @@ pkgver() {
 }
 
 build() {
-  cd ${srcdir}/beets
+  cd beets
   python -m build --no-isolation
+  pushd docs
+  make man
+  popd
 }
 
 check() {
-  cd ${srcdir}/beets
+  cd beets
   python -m pytest \
-	--deselect test/test_ui.py::ConfigTest::test_cli_config_paths_resolve_relative_to_user_dir \
-	--deselect test/test_ui.py::CompletionTest::test_completion \
-	--deselect test/test_importer.py::ImportDuplicateAlbumTest::test_merge_duplicate_album
+                  --deselect test/test_ui.py::ConfigTest::test_cli_config_paths_resolve_relative_to_user_dir \
+	                 --deselect test/test_ui.py::CompletionTest::test_completion \
+	                  --deselect test/test_importer.py::ImportDuplicateAlbumTest::test_merge_duplicate_album
 }
 
 package() {
-  cd ${srcdir}/beets
+  cd beets
   python -m installer --destdir="$pkgdir" dist/*.whl
   install -Dm 644 extra/_beet -t "${pkgdir}"/usr/share/zsh/site-functions/
-  install -Dm 644 man/beet.1 -t "${pkgdir}"/usr/share/man/man1/
-  install -Dm 644 man/beetsconfig.5 -t "${pkgdir}"/usr/share/man/man5/
+  pushd docs
+  install -Dm 644 _build/man/beet.1 -t "${pkgdir}"/usr/share/man/man1/
+  install -Dm 644 _build/man/beetsconfig.5 -t "${pkgdir}"/usr/share/man/man5/
+  popd
   install -Dm 644 LICENSE -t "${pkgdir}"/usr/share/licenses/beets-git/
 }
