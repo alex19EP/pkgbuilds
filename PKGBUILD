@@ -4,7 +4,7 @@
 # Contributor: Timofey Titovets <nefelim4ag@gmail.com>
 
 pkgname=bees-git
-pkgver=0.8.r58.g64dab81
+pkgver=0.10.r3.g75131f3
 pkgrel=1
 pkgdesc="Best-Effort Extent-Same, a btrfs deduplicator daemon"
 arch=('x86_64')
@@ -26,8 +26,8 @@ pkgver() {
 build() {
   cd bees
 
-  export CXXFLAGS="$CXXFLAGS -Wno-error=restrict"
-  export CFLAGS="$CFLAGS -Wno-error=restrict"
+  export CXXFLAGS="$CXXFLAGS -Wno-error=restrict -Wno-error=maybe-uninitialized"
+  export CFLAGS="$CFLAGS -Wno-error=restrict -Wno-error=maybe-uninitialized"
   make BEES_VERSION="${pkgver}" all scripts
 }
 
