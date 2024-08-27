@@ -4,7 +4,7 @@
 # Contributor: Johannes Löthberg <demizide@gmail.com>
 
 pkgname=beets-git
-pkgver=2.0.0.r73.gb583fb7de
+pkgver=2.0.0.r237.g4416b9857
 pkgrel=1
 pkgdesc="Flexible music library manager and tagger - git version"
 arch=('any')
@@ -21,6 +21,7 @@ depends=(
   python-six
   python-unidecode
   python-yaml
+  python-rich
 )
 makedepends=(
   git
@@ -44,6 +45,8 @@ checkdepends=(
   python-requests-oauthlib
   python-responses
   python-xdg
+  python-librosa
+  python-msgpack
 )
 optdepends=(
   'bash-completion: Bash completion'
@@ -65,6 +68,7 @@ optdepends=(
   'python-requests: Chromaprint/Acoustid, BPD, FetchArt plugins'
   'python-requests-oauthlib: Beatport plugin'
   'python-xdg: Thumbnails plugin'
+  'python-librosa: autobpm plugin'
 )
 provides=("beets=$pkgver")
 conflicts=('beets')
