@@ -7,7 +7,7 @@ post_install() {
   printf '%s\n' "  2. a webserver in nodejs, which serves the GUI,"
   printf '%s\n' "  3. a bash script '/usr/bin/pinesam' that orchestrates the startup"
   printf '%s\n' "     of 1., 2. and a webbrowser window to view the GUI."
-  printf '%s\n' "     Run "'/usr/bin/pinesam -h' for help."
+  printf '%s\n' "     Run '/usr/bin/pinesam -h' for help."
   printf '\n'
 }
 
