@@ -1,6 +1,6 @@
 pkgbase = orca-git
 	pkgdesc = Screen reader for individuals who are blind or visually impaired (development version)
-	pkgver = 46.ALPHA.r159.g1c496c9ad
+	pkgver = 47.RC.r80.g023104084
 	pkgrel = 1
 	url = https://wiki.gnome.org/Projects/Orca
 	arch = any
@@ -22,6 +22,7 @@ pkgbase = orca-git
 	depends = python-setproctitle
 	depends = python-psutil
 	depends = python-cairo
+	depends = python-dbus
 	depends = speech-dispatcher
 	depends = xorg-xkbcomp
 	depends = xorg-xmodmap
