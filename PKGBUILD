@@ -9,14 +9,14 @@
 
 pkgbase=speech-dispatcher-git
 pkgname=(speech-dispatcher-git libspeechd-git)
-pkgver=0.12.0.rc1.r27.g107f64c4
+pkgver=0.12.0.rc3.r52.g7a04f7f9
 pkgrel=1
 pkgdesc="High-level device independent layer for speech synthesis interface (development version)"
 arch=('x86_64')
 url='http://www.freebsoft.org/speechd'
 license=('GPL2' 'FDL')
 makedepends=('glib2' 'intltool' 'espeak-ng' 'libtool' 'python-pyxdg' 'dotconf'
-             'libpulse' 'libao' 'git')
+             "libpipewire" 'libpulse' 'libao' 'git')
 source=(${pkgname%-git}::'git+https://github.com/brailcom/speechd.git')
 sha512sums=('SKIP')
 
@@ -44,7 +44,8 @@ package_speech-dispatcher-git() {
 	depends=("libspeechd-git=$pkgver-$pkgrel" 'python-pyxdg' 'dotconf' 'libpulse' 'libao')
 	optdepends=('festival: Speech output using Festival'
 	            'espeak-ng: Speech output using ESpeak-ng'
-	            'pulseaudio: PulseAudio support')
+	            'pulseaudio: PulseAudio support'
+	            'pipewire: Pipewire support')
 	conflicts=("speech-dispatcher")
 	provides=("speech-dispatcher")
 	backup=('etc/speech-dispatcher/clients/emacs.conf'
