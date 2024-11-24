@@ -34,7 +34,6 @@ pkgbase = brltty-git
 	makedepends = strip-nondeterminism
 	makedepends = systemd-libs
 	makedepends = tcl
-	options = debug
 	options = !emptydirs
 	source = brltty::git+https://github.com/brltty/brltty.git
 	source = brltty-6.2-systemd_sysusers_groups.patch

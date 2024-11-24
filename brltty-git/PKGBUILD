@@ -13,7 +13,7 @@ makedepends=(alsa-lib at-spi2-core bluez-libs cython dbus dracut espeak-ng expat
              liblouis libspeechd libxaw ncurses ocaml-ctypes ocaml-findlib pcre2
              polkit python-setuptools speech-dispatcher strip-nondeterminism systemd-libs
              tcl)
-options=(debug !emptydirs)
+options=(!emptydirs)
 source=(${pkgname%-git}::'git+https://github.com/brltty/brltty.git'
         "${pkgname%-git}-6.2-systemd_sysusers_groups.patch"
         "${pkgname%-git}-6.4-x11_autostart.patch")
