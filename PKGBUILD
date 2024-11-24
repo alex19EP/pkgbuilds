@@ -2,7 +2,7 @@
 
 pkgbase=brltty-git
 pkgname=(brltty-git brltty-udev-generic-git)
-pkgver=6.6.r11.g813529e23
+pkgver=6.7.r9.gd52af1927
 pkgrel=1
 pkgdesc="Braille display driver for Linux/Unix (development version)"
 arch=(x86_64)
@@ -81,12 +81,11 @@ package_brltty-git() {
 	install=brltty-git.install
 
 	cd ${pkgbase%-git}
-	# installation does not work reliably with many cores, so set jobs to 1
-	make -j1 INSTALL_ROOT="$pkgdir" install
-	make -j1 INSTALL_ROOT="$pkgdir" install-systemd
-	make -j1 INSTALL_ROOT="$pkgdir" install-udev
-	make -j1 INSTALL_ROOT="$pkgdir" install-dracut
-	make -j1 INSTALL_ROOT="$pkgdir" install-polkit
+	make INSTALL_ROOT="$pkgdir" install
+	make INSTALL_ROOT="$pkgdir" install-systemd
+	make INSTALL_ROOT="$pkgdir" install-udev
+	make INSTALL_ROOT="$pkgdir" install-dracut
+	make INSTALL_ROOT="$pkgdir" install-polkit
 	install -vDm 644 Documents/${pkgbase%-git}.conf -t "$pkgdir/etc/"
 
 	# fix directory permission and ownership
