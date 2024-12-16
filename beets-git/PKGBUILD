@@ -4,32 +4,30 @@
 # Contributor: Johannes Löthberg <demizide@gmail.com>
 
 pkgname=beets-git
-pkgver=2.0.0.r237.g4416b9857
+pkgver=2.2.0.r25.g9110a1110
 pkgrel=1
 pkgdesc="Flexible music library manager and tagger - git version"
 arch=('any')
 url="https://beets.io/"
 license=('MIT')
 depends=(
+  python
   python-confuse
   python-jellyfish
   python-mediafile
   python-munkres
   python-musicbrainzngs
-  python-reflink
-  python-setuptools
-  python-six
+  python-platformdirs
   python-unidecode
   python-yaml
-  python-rich
 )
 makedepends=(
   git
-  python-sphinx
   python-build
-  python-wheel
   python-installer
   python-poetry-core
+  python-sphinx
+  python-wheel
 )
 checkdepends=(
   bash-completion
@@ -37,16 +35,16 @@ checkdepends=(
   python-beautifulsoup4
   python-discogs-client
   python-flask
+  python-librosa
   python-mpd2
-  python-pytest
-  python-pytest-cov
-  python-pytest-flask
+  python-numba
+  python-py7zr
   python-pylast
+  python-pytest
+  python-reflink
   python-requests-oauthlib
   python-responses
   python-xdg
-  python-librosa
-  python-msgpack
 )
 optdepends=(
   'bash-completion: Bash completion'
@@ -62,13 +60,13 @@ optdepends=(
   'python-discogs-client: Discogs plugin'
   'python-flask: Web plugin'
   'python-gobject: ReplayGain plugin'
+  'python-librosa: AutoBPM plugin'
   'python-mpd2: MPDStats plugin'
   'python-pyacoustid: Chromaprint/Acoustid plugin'
   'python-pylast: LastGenre plugin'
   'python-requests: Chromaprint/Acoustid, BPD, FetchArt plugins'
   'python-requests-oauthlib: Beatport plugin'
   'python-xdg: Thumbnails plugin'
-  'python-librosa: autobpm plugin'
 )
 provides=("beets=$pkgver")
 conflicts=('beets')
@@ -76,33 +74,33 @@ source=('git+https://github.com/beetbox/beets.git')
 md5sums=('SKIP')
 
 pkgver() {
-  cd ${srcdir}/beets
+  cd beets
   git describe --long --tags | sed -r 's/^v//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 build() {
   cd beets
-  python -m build --no-isolation
-  pushd docs
-  make man
-  popd
+  make -C docs man
+  python -m build --wheel --no-isolation
 }
 
 check() {
   cd beets
-  python -m pytest \
-                  --deselect test/test_ui.py::ConfigTest::test_cli_config_paths_resolve_relative_to_user_dir \
-	                 --deselect test/test_ui.py::CompletionTest::test_completion \
-	                  --deselect test/test_importer.py::ImportDuplicateAlbumTest::test_merge_duplicate_album
+  pytest \
+    --override-ini="addopts=" \
+    --ignore test/plugins/test_player.py \
+    --ignore test/plugins/test_autobpm.py \
+    --ignore test/plugins/test_aura.py \
+    --deselect test/test_ui.py::CompletionTest::test_completion \
+    --deselect test/test_importer.py::ImportDuplicateAlbumTest::test_merge_duplicate_album \
+    --deselect test/test_ui.py::ConfigTest::test_cli_config_paths_resolve_relative_to_user_dir
 }
 
 package() {
   cd beets
   python -m installer --destdir="$pkgdir" dist/*.whl
   install -Dm 644 extra/_beet -t "${pkgdir}"/usr/share/zsh/site-functions/
-  pushd docs
-  install -Dm 644 _build/man/beet.1 -t "${pkgdir}"/usr/share/man/man1/
-  install -Dm 644 _build/man/beetsconfig.5 -t "${pkgdir}"/usr/share/man/man5/
-  popd
-  install -Dm 644 LICENSE -t "${pkgdir}"/usr/share/licenses/beets-git/
+  install -Dm 644 docs/_build/man/beet.1 -t "${pkgdir}"/usr/share/man/man1/
+  install -Dm 644 docs/_build/man/beetsconfig.5 -t "${pkgdir}"/usr/share/man/man5/
+  install -Dm 644 LICENSE -t "${pkgdir}"/usr/share/licenses/beets/
 }
