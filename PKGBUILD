@@ -4,7 +4,7 @@
 # Contributor: Johannes Löthberg <demizide@gmail.com>
 
 pkgname=beets-git
-pkgver=2.2.0.r27.gbcf516b81
+pkgver=2.2.0.r35.gfdd365f88
 pkgrel=1
 pkgdesc="Flexible music library manager and tagger - git version"
 arch=('any')
@@ -15,7 +15,7 @@ depends=(
   python-confuse
   python-jellyfish
   python-mediafile
-  python-munkres
+  python-lap
   python-musicbrainzngs
   python-platformdirs
   python-unidecode
