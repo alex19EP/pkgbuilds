@@ -2,7 +2,7 @@
 
 pkgname=python-openapi3
 pkgver=1.8.2
-pkgrel=2
+pkgrel=3
 pkgdesc="A Python3 OpenAPI 3 Spec Parser"
 arch=('any')
 url=https://github.com/Dorthu/openapi3
