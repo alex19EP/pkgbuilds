@@ -4,7 +4,7 @@
 # Contributor: Johannes Löthberg <demizide@gmail.com>
 
 pkgname=beets-git
-pkgver=2.2.0.r35.gfdd365f88
+pkgver=2.2.0.r76.gbcc91ffff
 pkgrel=1
 pkgdesc="Flexible music library manager and tagger - git version"
 arch=('any')
@@ -45,6 +45,7 @@ checkdepends=(
   python-requests-oauthlib
   python-responses
   python-xdg
+  python-mock
 )
 optdepends=(
   'bash-completion: Bash completion'
