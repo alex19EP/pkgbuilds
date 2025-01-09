@@ -1,0 +1,3 @@
+[python-openapi3]
+source = "git"
+git = "https://github.com/Dorthu/openapi3.git"
