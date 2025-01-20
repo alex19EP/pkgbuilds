@@ -4,12 +4,12 @@
 # Contributor: Timofey Titovets <nefelim4ag@gmail.com>
 
 pkgname=bees-git
-pkgver=0.10.r3.g75131f3
+pkgver=0.11.rc3.r5.gad11db2
 pkgrel=1
 pkgdesc="Best-Effort Extent-Same, a btrfs deduplicator daemon"
 arch=('x86_64')
 url="https://github.com/Zygo/bees"
-license=('GPL3')
+license=('GPL-3.0-only')
 depends=('util-linux-libs' 'bash')
 makedepends=('git' 'discount' 'btrfs-progs' 'systemd')
 provides=('bees')
@@ -20,7 +20,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd bees
 
-  git describe --long --tags | sed 's/^v//;s/-/.r/;s/-/./'
+  git describe --long --tag | sed 's/^v//;s/[^-]*-g/r&/;s/-/./g'
 }
 
 build() {
