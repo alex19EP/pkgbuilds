@@ -9,7 +9,7 @@
 
 pkgbase=speech-dispatcher-git
 pkgname=(speech-dispatcher-git libspeechd-git)
-pkgver=0.12.0.rc3.r52.g7a04f7f9
+pkgver=0.12.0.r42.gfb3f571d
 pkgrel=1
 pkgdesc="High-level device independent layer for speech synthesis interface (development version)"
 arch=('x86_64')
