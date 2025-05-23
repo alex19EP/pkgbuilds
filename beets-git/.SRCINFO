@@ -1,6 +1,6 @@
 pkgbase = beets-git
 	pkgdesc = Flexible music library manager and tagger - git version
-	pkgver = 2.2.0.r225.ga1c0ebdee
+	pkgver = 2.3.1.r67.ge439c04d8
 	pkgrel = 1
 	url = https://beets.io/
 	arch = any
@@ -59,7 +59,7 @@ pkgbase = beets-git
 	optdepends = python-requests-oauthlib: Beatport plugin
 	optdepends = python-xdg: Thumbnails plugin
 	optdepends = python-langdetect: Lyrics Plugin
-	provides = beets=2.2.0.r225.ga1c0ebdee
+	provides = beets=2.3.1.r67.ge439c04d8
 	conflicts = beets
 	source = git+https://github.com/beetbox/beets.git
 	md5sums = SKIP
