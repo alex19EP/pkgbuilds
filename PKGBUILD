@@ -4,7 +4,7 @@
 # Contributor: Johannes Löthberg <demizide@gmail.com>
 
 pkgname=beets-git
-pkgver=2.2.0.r225.ga1c0ebdee
+pkgver=2.3.1.r67.ge439c04d8
 pkgrel=1
 pkgdesc="Flexible music library manager and tagger - git version"
 arch=('any')
@@ -84,8 +84,15 @@ pkgver() {
 
 build() {
   cd beets
-  make -C docs man
   python -m build --wheel --no-isolation
+
+  # docs building process requires (imports) beets
+  # install beets into a temporary directory; virtualenv by hand
+  # (easier this way because we need to override $PYTHONPATH directly)
+  local site_packages=$(python -c "import site; print(site.getsitepackages()[0])")
+  python -m installer --destdir=test-env dist/*.whl
+  PYTHONPATH="$PWD/test-env/$site_packages" \
+  make -C docs man
 }
 
 check() {
