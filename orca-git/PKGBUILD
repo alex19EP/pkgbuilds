@@ -3,7 +3,7 @@
 # Contributor: William Rea <sillywilly@gmail.com>
 
 pkgname=orca-git
-pkgver=47.RC.r80.g023104084
+pkgver=48.rc.r133.gbb525adae
 pkgrel=1
 pkgdesc="Screen reader for individuals who are blind or visually impaired (development version)"
 url="https://wiki.gnome.org/Projects/Orca"
@@ -18,6 +18,7 @@ depends=(
   gtk3
   liblouis
   libwnck3
+  python-dasbus
   python-gobject
   python-setproctitle
   python-psutil
