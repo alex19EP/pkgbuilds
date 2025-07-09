@@ -4,7 +4,7 @@
 # Contributor: Timofey Titovets <nefelim4ag@gmail.com>
 
 pkgname=bees-git
-pkgver=0.11.rc3.r5.gad11db2
+pkgver=0.11.r19.gf9f3913
 pkgrel=1
 pkgdesc="Best-Effort Extent-Same, a btrfs deduplicator daemon"
 arch=('x86_64')
