@@ -9,7 +9,7 @@
 
 pkgbase=speech-dispatcher-git
 pkgname=(speech-dispatcher-git libspeechd-git)
-pkgver=0.12.0.r42.gfb3f571d
+pkgver=0.12.0.r50.g488f5d97
 pkgrel=1
 pkgdesc="High-level device independent layer for speech synthesis interface (development version)"
 arch=('x86_64')
@@ -60,6 +60,7 @@ package_speech-dispatcher-git() {
 	        'etc/speech-dispatcher/modules/swift-generic.conf'
 	        'etc/speech-dispatcher/speechd.conf'
 	)
+	install=speech-dispatcher.install
 
 	cd "${pkgname%-git}"
 	make DESTDIR="${pkgdir}" install
