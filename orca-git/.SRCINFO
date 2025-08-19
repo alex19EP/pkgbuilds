@@ -1,11 +1,12 @@
 pkgbase = orca-git
 	pkgdesc = Screen reader for individuals who are blind or visually impaired (development version)
-	pkgver = 48.rc.r133.gbb525adae
+	pkgver = 49.beta.r12.gee7f8a2ce
 	pkgrel = 1
 	url = https://wiki.gnome.org/Projects/Orca
 	arch = any
 	groups = gnome
 	license = LGPL-2.1-or-later
+	checkdepends = python-pytest
 	makedepends = git
 	makedepends = itstool
 	makedepends = yelp-tools
