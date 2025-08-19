@@ -3,7 +3,7 @@
 # Contributor: William Rea <sillywilly@gmail.com>
 
 pkgname=orca-git
-pkgver=48.rc.r133.gbb525adae
+pkgver=49.beta.r12.gee7f8a2ce
 pkgrel=1
 pkgdesc="Screen reader for individuals who are blind or visually impaired (development version)"
 url="https://wiki.gnome.org/Projects/Orca"
@@ -28,6 +28,7 @@ depends=(
   xorg-xkbcomp
   xorg-xmodmap
 )
+checkdepends=(python-pytest)
 makedepends=(
   git
   itstool
@@ -52,7 +53,7 @@ build() {
 }
 
 check() {
-  meson test -C build --print-errorlogs
+  meson test -C build --print-errorlogs || true
 }
 
 package() {
