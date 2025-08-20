@@ -4,7 +4,7 @@
 
 pkgname=orca-git
 pkgver=49.beta.r12.gee7f8a2ce
-pkgrel=1
+pkgrel=2
 pkgdesc="Screen reader for individuals who are blind or visually impaired (development version)"
 url="https://wiki.gnome.org/Projects/Orca"
 arch=('any')
@@ -28,7 +28,7 @@ depends=(
   xorg-xkbcomp
   xorg-xmodmap
 )
-checkdepends=(python-pytest)
+checkdepends=(python-pytest python-pytest-mock)
 makedepends=(
   git
   itstool
