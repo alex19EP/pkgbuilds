@@ -4,7 +4,7 @@
 # Contributor: Johannes Löthberg <demizide@gmail.com>
 
 pkgname=beets-git
-pkgver=2.3.1.r67.ge439c04d8
+pkgver=2.4.0.r4.gc265bd772
 pkgrel=1
 pkgdesc="Flexible music library manager and tagger - git version"
 arch=('any')
@@ -14,8 +14,8 @@ depends=(
   python
   python-confuse
   python-jellyfish
-  python-mediafile
   python-lap
+  python-mediafile
   python-musicbrainzngs
   python-platformdirs
   python-unidecode
@@ -35,6 +35,7 @@ checkdepends=(
   python-beautifulsoup4
   python-discogs-client
   python-flask
+  python-langdetect
   python-librosa
   python-mpd2
   python-numba
@@ -43,11 +44,10 @@ checkdepends=(
   python-pytest
   python-reflink
   python-requests-oauthlib
-  python-responses
-  python-xdg
   python-mock
   python-requests-mock
-  python-langdetect
+  python-responses
+  python-xdg
 )
 optdepends=(
   'bash-completion: Bash completion'
@@ -63,6 +63,7 @@ optdepends=(
   'python-discogs-client: Discogs plugin'
   'python-flask: Web plugin'
   'python-gobject: ReplayGain plugin'
+  'python-langdetect: Lyrics Plugin'
   'python-librosa: AutoBPM plugin'
   'python-mpd2: MPDStats plugin'
   'python-pyacoustid: Chromaprint/Acoustid plugin'
@@ -70,7 +71,6 @@ optdepends=(
   'python-requests: Chromaprint/Acoustid, BPD, FetchArt plugins'
   'python-requests-oauthlib: Beatport plugin'
   'python-xdg: Thumbnails plugin'
-  'python-langdetect: Lyrics Plugin'
 )
 provides=("beets=$pkgver")
 conflicts=('beets')
