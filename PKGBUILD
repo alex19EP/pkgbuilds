@@ -4,7 +4,7 @@
 # Contributor: Johannes Löthberg <demizide@gmail.com>
 
 pkgname=beets-git
-pkgver=2.4.0.r4.gc265bd772
+pkgver=2.4.0.r78.gf6ca68319
 pkgrel=1
 pkgdesc="Flexible music library manager and tagger - git version"
 arch=('any')
@@ -26,6 +26,7 @@ makedepends=(
   python-build
   python-installer
   python-poetry-core
+  python-poetry-dynamic-versioning
   python-sphinx
   python-wheel
 )
