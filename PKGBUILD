@@ -2,7 +2,7 @@
 
 pkgbase=brltty-git
 pkgname=(brltty-git brltty-udev-generic-git)
-pkgver=6.7.r9.gd52af1927
+pkgver=6.8.r154.gc59955b29
 pkgrel=1
 pkgdesc="Braille display driver for Linux/Unix (development version)"
 arch=(x86_64)
@@ -16,13 +16,16 @@ makedepends=(alsa-lib at-spi2-core bluez-libs cython dbus dracut espeak-ng expat
 options=(!emptydirs)
 source=(${pkgname%-git}::'git+https://github.com/brltty/brltty.git'
         "${pkgname%-git}-6.2-systemd_sysusers_groups.patch"
-        "${pkgname%-git}-6.4-x11_autostart.patch")
+        "${pkgname%-git}-6.4-x11_autostart.patch"
+		"${pkgname%-git}-6.8-udev-tty-perms.rules")
 sha512sums=('SKIP'
             '32ba91271e2247b4a330cd213ed75b591268cb99a79c2efd9ae675804faee027c6b2f782768cb2329a65fc914ca2400b2901f35ce1fc2522c6691b343799eb02'
-            '4871512affefbc178f4204a1b285fc2b5a05ea2d181163195d695b760e9729b3d2d00b5f052abd71379df609c3859d7cbd64128bdefd16e898bbc4368500a9a0')
+            '4871512affefbc178f4204a1b285fc2b5a05ea2d181163195d695b760e9729b3d2d00b5f052abd71379df609c3859d7cbd64128bdefd16e898bbc4368500a9a0'
+            'dd210599e467a073f891554c7d3991dce90fa0506a7aef28c43a1543d94073e8d561d36c909511778d4bfcc198cac04f146966edf4462d5e553224a72864f6f3')
 b2sums=('SKIP'
         '036e36d558594bb06af1eb41ff5fc9ae52ccf4bad54556c3f4f81a5e2f31f574039835e5e756455527c327a73d563a3db54a9f32e3478545a2a22c2725aaeee2'
-        '4ebc07a725ef8362233a83118e93901e78943e8dae08f9358b668ff13ab88a65eb9e87c49d106a8c3d87eb62007b230e199107eacb01f92dc683335076c01309')
+        '4ebc07a725ef8362233a83118e93901e78943e8dae08f9358b668ff13ab88a65eb9e87c49d106a8c3d87eb62007b230e199107eacb01f92dc683335076c01309'
+        '7110448b42799195abbc6f9711ebe25cdbc95056833764332c343a2d6e1201c8b590644db46a2d6612fa96740cb7da8cc7f72bb329127ae3bb6c8351efcde260')
 
 pkgver() {
 	cd "${pkgbase%-git}"
@@ -93,6 +96,7 @@ package_brltty-git() {
 
 	# move generic udev rule, as it applies too broadly
 	mv -v "$pkgdir/usr/lib/udev/rules.d/90-brltty-usb-generic.rules" ../
+	install -vDm 644 ../brltty-6.8-udev-tty-perms.rules "$pkgdir/usr/lib/udev/rules.d/90-brltty-tty-perms.rules"
 }
 
 package_brltty-udev-generic-git() {
