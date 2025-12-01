@@ -2,7 +2,7 @@
 
 pkgbase=brltty-git
 pkgname=(brltty-git brltty-udev-generic-git)
-pkgver=6.8.r154.gc59955b29
+pkgver=6.8.r268.gf3ff33da2
 pkgrel=1
 pkgdesc="Braille display driver for Linux/Unix (development version)"
 arch=(x86_64)
@@ -97,7 +97,7 @@ package_brltty-git() {
 	install -vDm 644 Documents/${pkgbase%-git}.conf -t "$pkgdir/etc/"
 
 	# fix directory permission and ownership
-	install -vdm 750 -o root -g 102 "$pkgdir/usr/share/polkit-1/rules.d"
+	install -vdm 755 -o root -g 102 "$pkgdir/usr/share/polkit-1/rules.d"
 
 	# move generic udev rule, as it applies too broadly
 	mv -v "$pkgdir/usr/lib/udev/rules.d/90-brltty-usb-generic.rules" ../
