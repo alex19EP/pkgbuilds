@@ -9,7 +9,7 @@
 
 pkgbase=speech-dispatcher-git
 pkgname=(speech-dispatcher-git libspeechd-git)
-pkgver=0.12.0.r50.g488f5d97
+pkgver=0.12.0.r81.ga8d862bc
 pkgrel=1
 pkgdesc="High-level device independent layer for speech synthesis interface (development version)"
 arch=('x86_64')
@@ -34,6 +34,7 @@ build() {
 	cd "${pkgname%-git}"
 	./configure --prefix=/usr --sysconfdir=/etc \
 	            --disable-static \
+	            --disable-doc \
 	            --libexecdir=/usr/lib/speech-dispatcher/ \
 	            --with-ibmtts=no --with-kali=no --with-baratinoo=no \
 	            --with-voxin=no --without-flite
