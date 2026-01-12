@@ -47,6 +47,7 @@ checkdepends=(
   python-pytest
   python-reflink
   python-requests-oauthlib
+  python-requests-ratelimiter 
   python-mock
   python-requests-mock
   python-responses
@@ -75,6 +76,7 @@ optdepends=(
   'python-pylast: LastGenre plugin'
   'python-requests: Chromaprint/Acoustid, BPD, FetchArt plugins'
   'python-requests-oauthlib: Beatport plugin'
+  'python-requests-ratelimiter'
   'python-xdg: Thumbnails plugin'
   'python-titlecase: Titlecase plugin'
 )
