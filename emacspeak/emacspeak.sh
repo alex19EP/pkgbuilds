@@ -1,2 +1,3 @@
 #!/bin/sh
-emacs -l /usr/share/emacs/site-lisp/emacspeak/lisp/emacspeak-setup.elc "$@"
+export DTK_PROGRAM=espeak
+emacs -l /usr/share/emacs/site-lisp/emacspeak/lisp/emacspeak-setup.el "$@"
