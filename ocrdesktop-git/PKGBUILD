@@ -2,20 +2,25 @@
 # Contributor: Alexander Epaneshnikov <alex19ep@archlinux.org>
 
 pkgname=ocrdesktop-git
-pkgver=3.0.r0.g196a287
-pkgrel=2
+pkgver=4.0.r5.ga36c602
+pkgrel=1
 pkgdesc="OCR the current window or desktop and make it browsable for the user (development version)"
 arch=('any')
-url="http://www.crivatec.de"
-license=('GPL')
-depends=('libwnck3' 'python-atspi' 'python-pillow' 'python-pytesseract' 'tesseract-data-eng')
-makedepends=('git')
-
-optdepends=(
-'python-webcolors: For color analyzing support'
-'python-scipy: For color analyzing support'
-'python-pdf2image: for PDF support'
+url="https://github.com/chrys87/ocrdesktop"
+license=('GPL-3.0-only')
+depends=(
+  'libwnck3'
+  'python'
+  'python-atspi'
+  'python-gobject'
+  'python-pillow'
+  'python-pytesseract'
+  'python-scipy'
+  'python-webcolors'
+  'python-pdf2image'
+  'tesseract-data-eng'
 )
+makedepends=('git' 'python-build' 'python-installer' 'python-wheel' 'python-hatchling')
 
 source=("git+https://github.com/chrys87/ocrdesktop.git")
 install='ocrdesktop.install'
@@ -24,13 +29,23 @@ conflicts=('ocrdesktop')
 md5sums=("SKIP")
 
 pkgver() {
- cd "${pkgname%-git}"
- # cutting off 'v' prefix that presents in the git tag
- git describe --tags --long | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/_/-/g;s/-/./g'
+  cd "${pkgname%-git}"
+  # cutting off 'v' prefix that presents in the git tag
+  git describe --tags --long | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/_/-/g;s/-/./g'
+}
+
+prepare() {
+  cd ocrdesktop
+  git clean -dfx
+}
+
+build() {
+  cd ocrdesktop
+  python -m build --wheel --no-isolation
 }
 
 package() {
- cd ocrdesktop
-  install -Dm755 ocrdesktop "$pkgdir/usr/bin/ocrdesktop"
+  cd ocrdesktop
+  python -m installer --destdir="$pkgdir" dist/*.whl
   install -Dm644 ocrdesktop.1.gz "${pkgdir}/usr/share/man/man1/ocrdesktop.1.gz"
 }
