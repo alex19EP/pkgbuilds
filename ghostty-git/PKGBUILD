@@ -4,12 +4,21 @@
 
 _pkgbase=ghostty
 pkgname=($_pkgbase-git $_pkgbase-shell-integration-git $_pkgbase-terminfo-git $_pkgbase-nautilus-git)
-pkgrel=2
-pkgver=1.3.1.r1209.gd560c64
-pkgdesc="Fast, native, feature-rich terminal emulator pushing modern features"
+pkgrel=1
+pkgver=1.3.1.r1554.g1d1c83f
+pkgdesc="Fast, native, feature-rich terminal emulator pushing modern features (GTK accessibility branch)"
 arch=(x86_64 aarch64 i686)
 url="https://github.com/ghostty-org/$_pkgbase"
 license=(MIT)
+
+# Build the GTK accessibility branch from the fork rather than upstream main.
+# Keep this branch pushed: makepkg builds whatever GitHub has, not the local
+# working tree.
+_repo="https://github.com/alex19EP/$_pkgbase.git"
+_branch="gtk-accessibility-poc"
+# Distinct checkout name so this doesn't collide with the upstream-URL clone
+# makepkg may already have cached under $SRCDEST/ghostty.
+_srcname="$_pkgbase-a11y"
 depends=(bzip2
          fontconfig libfontconfig.so
          freetype2 libfreetype.so
@@ -29,30 +38,44 @@ makedepends=(blueprint-compiler
              git
              pandoc-cli
              'zig')
-source=("git+$url.git"
+source=("$_srcname::git+$_repo#branch=$_branch"
         ghostty-llvm.patch)
 sha256sums=('SKIP'
-            '1df55089c6539501eab6c59b24625c016cd11c12f12d2181d72a5fb5b080502b')
+            'af82aafe8f6a6de6ae61ad1c4badef6d4cd08d4a23e3cffe8572d5f90ebef574')
 
 prepare() {
-	cd "$_pkgbase"
+	cd "$_srcname"
 	# https://github.com/ghostty-org/ghostty/discussions/11993#discussioncomment-17336660
 	patch -p1 -i ../ghostty-llvm.patch
 	ZIG_GLOBAL_CACHE_DIR="$srcdir/zig-global-cache/" ./nix/build-support/fetch-zig-cache.sh
 }
 
 pkgver() {
-	cd "$_pkgbase"
+	cd "$_srcname"
 	git describe --long --tags --abbrev=7 --match="v*" HEAD |
 		sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-        cd "$_pkgbase"
-	DESTDIR=build zig build \
+	cd "$_srcname"
+	# Zig 0.16 stores fetched packages in the global cache as .tar.gz files,
+	# but `--system <dir>` still expects extracted package directories, so it
+	# can no longer consume the cache prepare() populates. Point Zig at that
+	# cache directly and enable each system integration by hand instead --
+	# these are exactly the ones `--system` used to turn on by default, and
+	# they are what the depends=() list above reflects. -fsys=fontconfig in
+	# particular is mandatory: a statically linked fontconfig alongside GTK's
+	# system one corrupts the shared font cache and crashes in FcFontSort.
+	DESTDIR=build ZIG_GLOBAL_CACHE_DIR="$srcdir/zig-global-cache" zig build \
 		--summary all \
 		--prefix "/usr" \
-		--system "$srcdir/zig-global-cache/p" \
+		-fsys=fontconfig \
+		-fsys=freetype \
+		-fsys=harfbuzz \
+		-fsys=libpng \
+		-fsys=oniguruma \
+		-fsys=zlib \
+		-fsys=gtk4-layer-shell \
 		-Doptimize=ReleaseFast \
 		-Dgtk-x11=true \
 		-Dcpu=baseline \
@@ -68,7 +91,7 @@ package_ghostty-git() {
 	provides=("${pkgname%-git}=$pkgver")
 	conflicts=(${pkgname%-git})
 	optdepends+=("ghostty-nautilus: Open in Ghostty context menu in GNOME Files")
-	cd "$_pkgbase"
+	cd "$_srcname"
 	cp -a build/* "$pkgdir/"
 	install -Dm0644 -t "${pkgdir}/usr/share/licenses/$pkgname/" LICENSE
 	rm -r "$pkgdir"/usr/share/terminfo
@@ -80,7 +103,7 @@ package_ghostty-shell-integration-git() {
 	depends=()
 	provides=("${pkgname%-git}=$pkgver")
 	conflicts=(${pkgname%-git})
-	cd "$_pkgbase"
+	cd "$_srcname"
 	mkdir -p "$pkgdir/usr/share/ghostty/shell-integration"
 	cp -r build/usr/share/ghostty/shell-integration/* "$pkgdir/usr/share/ghostty/shell-integration/"
 }
@@ -90,7 +113,7 @@ package_ghostty-terminfo-git() {
 	depends=()
 	provides=("${pkgname%-git}=$pkgver")
 	conflicts=(${pkgname%-git})
-	cd "$_pkgbase"
+	cd "$_srcname"
 	mkdir -p "$pkgdir/usr/share/terminfo"
 	cp -r build/usr/share/terminfo/* "$pkgdir/usr/share/terminfo/"
 }
@@ -103,7 +126,7 @@ package_ghostty-nautilus-git() {
 	# Unlike the rest of ghostty, the nautilus extension is GPL-2.0-or-later
 	# because nautilus-python itself is GPL-2 as well.
 	license=(GPL-2.0-or-later)
-	cd "$_pkgbase"
+	cd "$_srcname"
 	mkdir -p "$pkgdir"/usr/share/nautilus-python/
 	cp -r build/usr/share/nautilus-python/* "$pkgdir"/usr/share/nautilus-python/
 }
